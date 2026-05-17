@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Glow effect -->
+  <ellipse cx="100" cy="120" rx="85" ry="95" fill="url(#shieldGrad)" opacity="0.15" />
+  
+  <!-- Main shield -->
+  <path d="M 100 20 L 160 60 L 160 130 C 160 180 100 220 100 220 C 100 220 40 180 40 130 L 40 60 Z" 
+        fill="url(#shieldGrad)" stroke="#0ea5e9" stroke-width="2" />
+  
+  <!-- Checkmark inside -->
+  <g transform="translate(70, 110)">
+    <path d="M 10 25 L 25 40 L 50 15" stroke="white" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  
+  <!-- Decorative rings -->
+  <circle cx="100" cy="120" r="30" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" opacity="0" 
+          style="animation: pulse 2s ease-in-out infinite" />
+</svg>
+
+<style>
+  @keyframes pulse {
+    0%, 100% { opacity: 0; r: 25px; }
+    50% { opacity: 0.5; r: 45px; }
+  }
+</style>

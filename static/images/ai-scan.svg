@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="scanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9f7aea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Center circle (brain/core) -->
+  <circle cx="100" cy="100" r="30" fill="url(#scanGrad)" stroke="#6366f1" stroke-width="2" />
+  
+  <!-- Neural nodes -->
+  <circle cx="100" cy="65" r="6" fill="#6366f1" />
+  <circle cx="135" cy="100" r="6" fill="#6366f1" />
+  <circle cx="100" cy="135" r="6" fill="#6366f1" />
+  <circle cx="65" cy="100" r="6" fill="#6366f1" />
+  <circle cx="125" cy="75" r="5" fill="#6366f1" />
+  <circle cx="125" cy="125" r="5" fill="#6366f1" />
+  <circle cx="75" cy="125" r="5" fill="#6366f1" />
+  <circle cx="75" cy="75" r="5" fill="#6366f1" />
+  
+  <!-- Neural connections -->
+  <line x1="100" y1="95" x2="100" y2="65" stroke="#9f7aea" stroke-width="2" opacity="0.6" />
+  <line x1="105" y1="100" x2="135" y2="100" stroke="#9f7aea" stroke-width="2" opacity="0.6" />
+  <line x1="100" y1="105" x2="100" y2="135" stroke="#9f7aea" stroke-width="2" opacity="0.6" />
+  <line x1="95" y1="100" x2="65" y2="100" stroke="#9f7aea" stroke-width="2" opacity="0.6" />
+  <line x1="106" y1="94" x2="125" y2="75" stroke="#9f7aea" stroke-width="1.5" opacity="0.4" />
+  <line x1="106" y1="106" x2="125" y2="125" stroke="#9f7aea" stroke-width="1.5" opacity="0.4" />
+  <line x1="94" y1="106" x2="75" y2="125" stroke="#9f7aea" stroke-width="1.5" opacity="0.4" />
+  <line x1="94" y1="94" x2="75" y2="75" stroke="#9f7aea" stroke-width="1.5" opacity="0.4" />
+  
+  <!-- Outer scanning rings -->
+  <circle cx="100" cy="100" r="50" fill="none" stroke="url(#scanGrad)" stroke-width="2" opacity="0"
+          style="animation: scan 3s linear infinite" />
+  <circle cx="100" cy="100" r="65" fill="none" stroke="url(#scanGrad)" stroke-width="1" opacity="0"
+          style="animation: scan 3s linear infinite 1s" />
+  <circle cx="100" cy="100" r="80" fill="none" stroke="url(#scanGrad)" stroke-width="1" opacity="0"
+          style="animation: scan 3s linear infinite 2s" />
+</svg>
+
+<style>
+  @keyframes scan {
+    0% { r: 40px; opacity: 1; }
+    100% { r: 90px; opacity: 0; }
+  }
+</style>

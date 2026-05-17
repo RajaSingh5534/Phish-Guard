@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background glow -->
+  <circle cx="150" cy="150" r="140" fill="url(#heroGrad)" opacity="0.1" />
+  
+  <!-- Main shield 1 (Large, back) -->
+  <path d="M 150 40 L 220 90 L 220 160 C 220 210 150 250 150 250 C 150 250 80 210 80 160 L 80 90 Z" 
+        fill="url(#heroGrad)" stroke="#0ea5e9" stroke-width="2" opacity="0.6" />
+  
+  <!-- Checkmark in shield 1 -->
+  <g transform="translate(130, 135)">
+    <path d="M 8 18 L 18 28 L 35 11" stroke="white" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6" />
+  </g>
+  
+  <!-- Main shield 2 (Medium, middle) -->
+  <path d="M 150 50 L 210 95 L 210 155 C 210 200 150 240 150 240 C 150 240 90 200 90 155 L 90 95 Z" 
+        fill="url(#heroGrad)" stroke="#0ea5e9" stroke-width="2" opacity="0.8" />
+  
+  <!-- Checkmark in shield 2 -->
+  <g transform="translate(125, 140)">
+    <path d="M 10 20 L 22 32 L 42 12" stroke="white" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.8" />
+  </g>
+  
+  <!-- Main shield 3 (Front, bold) -->
+  <path d="M 150 60 L 200 100 L 200 150 C 200 190 150 230 150 230 C 150 230 100 190 100 150 L 100 100 Z" 
+        fill="url(#heroGrad)" stroke="white" stroke-width="3" />
+  
+  <!-- Checkmark in shield 3 -->
+  <g transform="translate(120, 145)">
+    <path d="M 12 22 L 26 36 L 50 14" stroke="white" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  
+  <!-- Pulsing ring around entire element -->
+  <circle cx="150" cy="150" r="130" fill="none" stroke="#0ea5e9" stroke-width="2" opacity="0"
+          style="animation: heroFloat 3s ease-in-out infinite" />
+</svg>
+
+<style>
+  @keyframes heroFloat {
+    0%, 100% { opacity: 0; r: 120px; }
+    50% { opacity: 0.5; r: 140px; }
+  }
+</style>

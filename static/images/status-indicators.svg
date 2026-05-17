@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 150">
+  <defs>
+    <linearGradient id="statusGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ecc71;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="statusGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="statusGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d68910;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Safe Status -->
+  <g transform="translate(0, 0)">
+    <rect x="10" y="10" width="70" height="130" rx="8" fill="rgba(46,204,113,0.1)" stroke="url(#statusGrad1)" stroke-width="2" />
+    <circle cx="45" cy="40" r="15" fill="url(#statusGrad1)" />
+    <text x="45" y="45" text-anchor="middle" font-size="24" font-weight="bold" fill="white">✓</text>
+    <text x="45" y="95" text-anchor="middle" font-size="12" font-weight="600" fill="#27ae60">SAFE</text>
+    <text x="45" y="115" text-anchor="middle" font-size="9" fill="#27ae60">URL Protected</text>
+  </g>
+  
+  <!-- Malicious Status -->
+  <g transform="translate(90, 0)">
+    <rect x="10" y="10" width="70" height="130" rx="8" fill="rgba(231,76,60,0.1)" stroke="url(#statusGrad2)" stroke-width="2" />
+    <circle cx="45" cy="40" r="15" fill="url(#statusGrad2)" />
+    <text x="45" y="48" text-anchor="middle" font-size="24" font-weight="bold" fill="white">!</text>
+    <text x="45" y="95" text-anchor="middle" font-size="12" font-weight="600" fill="#c0392b">MALICIOUS</text>
+    <text x="45" y="115" text-anchor="middle" font-size="9" fill="#c0392b">URL Blocked</text>
+  </g>
+  
+  <!-- Suspicious Status -->
+  <g transform="translate(170, 0)">
+    <rect x="10" y="10" width="70" height="130" rx="8" fill="rgba(243,156,18,0.1)" stroke="url(#statusGrad3)" stroke-width="2" />
+    <circle cx="45" cy="40" r="15" fill="url(#statusGrad3)" />
+    <text x="45" y="48" text-anchor="middle" font-size="24" font-weight="bold" fill="white">?</text>
+    <text x="45" y="95" text-anchor="middle" font-size="12" font-weight="600" fill="#d68910">SUSPICIOUS</text>
+    <text x="45" y="115" text-anchor="middle" font-size="9" fill="#d68910">Use With Caution</text>
+  </g>
+  
+  <!-- Connecting lines -->
+  <line x1="80" y1="75" x2="90" y2="75" stroke="#e0e0e0" stroke-width="1.5" />
+  <line x1="160" y1="75" x2="170" y2="75" stroke="#e0e0e0" stroke-width="1.5" />
+</svg>

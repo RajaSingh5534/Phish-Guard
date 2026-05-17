@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PhishGuard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --dark: #111111;
+            --dark-2: #1a1a1a;
+            --dark-3: #222222;
+            --dark-4: #2e2e2e;
+            --mid: #374151;
+            --gray: #475569;
+            --light-gray: #94a3b8;
+            --off-white: #f0f0f0;
+            --white: #ffffff;
+            --safe: #22c55e;
+            --danger: #ef4444;
+            --warn: #f59e0b;
+            --border: #2a2a2a;
+            --border-light: #e5e5e5;
+            --radius: 10px;
+            --radius-lg: 16px;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--off-white);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ========================
+           NAVBAR
+        ======================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--white);
+            border-bottom: 1.5px solid var(--border-light);
+            padding: 0 40px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 16px;
+        }
+
+        .nav-logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo-text span {
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--mid);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--dark);
+        }
+
+        /* ========================
+           DASHBOARD
+        ======================== */
+        .dashboard-container {
+            padding-top: 100px;
+            padding-bottom: 80px;
+        }
+
+        .dashboard-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .dashboard-header h1 {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .dashboard-header p {
+            font-size: 16px;
+            color: var(--light-gray);
+            font-weight: 400;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--mid);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 40px;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--dark);
+            transform: translateX(-4px);
+        }
+
+        /* ========================
+           STAT BOXES
+        ======================== */
+        .stat-box {
+            background: var(--white);
+            border: 1.5px solid var(--border-light);
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            border-color: var(--dark);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 900;
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--light-gray);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        /* ========================
+           DASHBOARD CARDS
+        ======================== */
+        .dashboard-card {
+            background: var(--white);
+            border: 1.5px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .dashboard-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dashboard-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        /* ========================
+           SCAN HISTORY
+        ======================== */
+        .scan-history {
+            max-height: 420px;
+            overflow-y: auto;
+        }
+
+        .scan-history::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scan-history::-webkit-scrollbar-track {
+            background: var(--border-light);
+            border-radius: 4px;
+        }
+
+        .scan-history::-webkit-scrollbar-thumb {
+            background: var(--mid);
+            border-radius: 4px;
+        }
+
+        .scan-history::-webkit-scrollbar-thumb:hover {
+            background: var(--dark);
+        }
+
+        .history-item {
+            padding: 16px;
+            border-left: 3px solid var(--border);
+            margin-bottom: 12px;
+            background: var(--off-white);
+            border-radius: var(--radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .history-item:hover {
+            background: var(--white);
+            border-left-color: var(--dark);
+        }
+
+        .history-item strong {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            word-break: break-all;
+        }
+
+        .history-item small {
+            font-size: 12px;
+            color: var(--light-gray);
+            display: block;
+            margin-top: 6px;
+        }
+
+        .history-item.safe {
+            border-left-color: var(--safe);
+        }
+
+        .history-item.unsafe,
+        .history-item.dangerous {
+            border-left-color: var(--danger);
+        }
+
+        .history-item.suspicious,
+        .history-item.unrecognized {
+            border-left-color: var(--warn);
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.safe {
+            background: #dcfce7;
+            color: var(--safe);
+        }
+
+        .status-badge.unsafe,
+        .status-badge.dangerous {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+
+        .status-badge.suspicious,
+        .status-badge.unrecognized {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        /* ========================
+           INPUT GROUP
+        ======================== */
+        .input-group {
+            display: flex;
+            gap: 0;
+            background: var(--white);
+            border: 1.5px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .input-group:focus-within {
+            border-color: var(--dark);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .input-group input {
+            flex: 1;
+            border: none;
+            padding: 14px 20px;
+            font-size: 14px;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--dark);
+            background: transparent;
+        }
+
+        .input-group input::placeholder {
+            color: var(--light-gray);
+        }
+
+        .input-group input:focus {
+            outline: none;
+        }
+
+        .input-group-icon {
+            padding: 12px 16px;
+            color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .input-group button {
+            background: var(--dark);
+            color: var(--white);
+            border: none;
+            padding: 14px 32px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .input-group button:hover {
+            background: var(--dark-2);
+        }
+
+        /* ========================
+           ALERT & CARDS
+        ======================== */
+        .alert {
+            border: 1.5px solid;
+            border-radius: var(--radius);
+            padding: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .alert.alert-info {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            color: #1e40af;
+        }
+
+        .card {
+            border: 1.5px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 14px;
+        }
+
+        .card ul li {
+            font-size: 13px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* ========================
+           RESULT CARD
+        ======================== */
+        .result-card {
+            border: 1.5px solid;
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .result-card.safe {
+            background: #f0fdf4;
+            border-color: #86efac;
+        }
+
+        .result-card.dangerous {
+            background: #fef2f2;
+            border-color: #fca5a5;
+        }
+
+        .result-card.suspicious {
+            background: #fffbeb;
+            border-color: #fcd34d;
+        }
+
+        .result-card h5 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-card strong {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .result-card ul {
+            margin: 12px 0 0 20px;
+        }
+
+        .result-card li {
+            font-size: 13px;
+            margin: 6px 0;
+        }
+
+        /* ========================
+           FOOTER
+        ======================== */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 40px;
+            border-top: 1.5px solid var(--dark-2);
+        }
+
+        .footer p {
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* ========================
+           RESPONSIVE
+        ======================== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .dashboard-container {
+                padding: 80px 20px 60px;
+            }
+
+            .dashboard-card {
+                padding: 24px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a class="nav-logo" href="/">
+            <div class="nav-logo-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <span class="nav-logo-text">PhishGuard</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="/#home">Home</a></li>
+            <li><a href="/#features">Features</a></li>
+            <li><a href="/#check">Check URL</a></li>
+        </ul>
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container" style="max-width: 1200px; margin: 0 auto; padding-left: 40px; padding-right: 40px;">
+        <a href="/" class="back-btn">
+            <i class="fas fa-arrow-left"></i>Back to Home
+        </a>
+
+        <div class="dashboard-header">
+            <h1><i class="fas fa-chart-line" style="margin-right: 12px;"></i>Dashboard</h1>
+            <p>Monitor and track your URL scanning activity</p>
+        </div>
+
+        <!-- Statistics Row -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 50px;">
+            <div class="stat-box">
+                <span class="stat-number" id="total-scans">0</span>
+                <span class="stat-label">Total Scans</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number" id="safe-urls">0</span>
+                <span class="stat-label">Safe URLs</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number" id="unsafe-urls">0</span>
+                <span class="stat-label">Unsafe URLs</span>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Card -->
+        <div class="dashboard-card">
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;">
+                <div>
+                    <h2><i class="fas fa-history" style="margin-right: 10px;"></i>Recent Scans</h2>
+                    <div class="scan-history" id="scan-history">
+                        <div style="text-align: center; padding: 50px 20px; color: var(--light-gray);">
+                            <i class="fas fa-inbox" style="font-size: 48px; display: block; margin-bottom: 16px; opacity: 0.5;"></i>
+                            <p style="margin: 0;">No scan history yet. Start by scanning a URL!</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Quick Stats</h3>
+                    <div class="alert alert-info" style="margin-bottom: 16px;">
+                        <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
+                        <strong>Session Info:</strong><br>
+                        <small style="font-size: 12px; opacity: 0.8;">Track and manage your URL scanning history with PhishGuard's advanced dashboard.</small>
+                    </div>
+                    <div class="card" style="margin-top: 12px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Features</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 12px; font-size: 13px; color: var(--gray); font-weight: 500;">
+                                    <i class="fas fa-check" style="color: var(--safe); margin-right: 8px;"></i>Real-time analysis
+                                </li>
+                                <li style="margin-bottom: 12px; font-size: 13px; color: var(--gray); font-weight: 500;">
+                                    <i class="fas fa-check" style="color: var(--safe); margin-right: 8px;"></i>Detailed reports
+                                </li>
+                                <li style="margin-bottom: 12px; font-size: 13px; color: var(--gray); font-weight: 500;">
+                                    <i class="fas fa-check" style="color: var(--safe); margin-right: 8px;"></i>Risk assessment
+                                </li>
+                                <li style="margin-bottom: 0; font-size: 13px; color: var(--gray); font-weight: 500;">
+                                    <i class="fas fa-check" style="color: var(--safe); margin-right: 8px;"></i>Quick referencing
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scanner Card -->
+        <div class="dashboard-card">
+            <h2><i class="fas fa-search" style="margin-right: 10px;"></i>Scan a URL</h2>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <div class="input-group-icon">
+                    <i class="fas fa-link"></i>
+                </div>
+                <input type="text" id="dashboardUrlInput" style="padding: 14px 20px; font-size: 14px;" placeholder="Enter URL to scan...">
+                <button type="button" id="dashboardCheckButton">
+                    <i class="fas fa-shield-alt" style="margin-right: 8px;"></i>Check Now
+                </button>
+            </div>
+            <div id="dashboardResult" style="display: none;">
+                <!-- Result will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Raja. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

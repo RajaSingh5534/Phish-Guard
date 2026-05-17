@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240">
+  <defs>
+    <linearGradient id="lockGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ecc71;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Glow effect -->
+  <ellipse cx="100" cy="130" rx="80" ry="90" fill="url(#lockGrad)" opacity="0.15" />
+  
+  <!-- Lock body -->
+  <rect x="70" y="110" width="60" height="80" rx="8" fill="url(#lockGrad)" stroke="#27ae60" stroke-width="2" />
+  
+  <!-- Lock shackle -->
+  <path d="M 85 110 Q 85 60 100 50 Q 115 60 115 110" fill="none" stroke="url(#lockGrad)" stroke-width="8" stroke-linecap="round" />
+  
+  <!-- Keyhole circle -->
+  <circle cx="100" cy="135" r="8" fill="#ffffff" opacity="0.9" />
+  
+  <!-- Keyhole stem -->
+  <rect x="98" y="143" width="4" height="25" rx="2" fill="#ffffff" opacity="0.9" />
+  
+  <!-- Decorative lock details -->
+  <line x1="75" y1="125" x2="125" y2="125" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" />
+  
+  <!-- Pulsing secure indicator -->
+  <circle cx="100" cy="130" r="60" fill="none" stroke="#27ae60" stroke-width="1" opacity="0"
+          style="animation: lockPulse 2s ease-in-out infinite" />
+</svg>
+
+<style>
+  @keyframes lockPulse {
+    0%, 100% { opacity: 0; r: 50px; }
+    50% { opacity: 0.5; r: 70px; }
+  }
+</style>
